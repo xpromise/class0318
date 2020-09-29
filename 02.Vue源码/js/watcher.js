@@ -70,6 +70,7 @@ Watcher.prototype = {
   },
 
   parseGetter: function (exp) {
+    // 匹配特殊符号
     if (/[^\w.$]/.test(exp)) return;
     // exp person.name
     // exps ['person', 'name']
@@ -81,6 +82,8 @@ Watcher.prototype = {
       for (var i = 0, len = exps.length; i < len; i++) {
         if (!obj) return;
         // 读取属性 --> 触发数据代理的get --> 触发数据劫持的get
+        // 第一次遍历 vm['person'] --> this.person 
+        // 第二次遍历 person['name'] --> person.name
         obj = obj[exps[i]];
       }
       return obj;

@@ -34,6 +34,8 @@ Observer.prototype = {
             get: function() {
                 if (Dep.target) {
                     // 建立dep和watcher的关系
+                    // dep中保存watcher
+                    // watcher中保存dep
                     dep.depend();
                 }
                 return val;
@@ -76,6 +78,7 @@ function Dep() {
 }
 
 Dep.prototype = {
+    // 添加watcher
     addSub: function(sub) {
         this.subs.push(sub);
     },
