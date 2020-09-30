@@ -9,13 +9,37 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 		2. 配置
 			- 多入口: 有多少个入口，就会输出多少个js文件
 			- optimization
+			- 单入口：
+				如果是node_modules可以提取成vendor
+				但是其他模块就会被打包成1个js文件
+		3. 项目中使用：
+			vue -->
+				router   
+					const Foo = () => import('./Foo.vue')
+
+				new VueRouter({
+					routes: [
+						{
+							path: '/xxx',
+							component: Foo
+						}
+					]
+				})	
+
+			react -->
+				const Foo = lazy(() => import('./xxxx'))		
+
+				<Suspense fallback={<div>loading...</div>}>
+					<Route path="/xxx" component={Foo} />
+				</Suspense>
+
 */
 
 module.exports = {
 	// 多入口
 	entry: {
 		main: "./src/main.js",
-		home: "./src/home.js",
+		// home: "./src/home.js",
 	},
 	// 输出：打包后的文件输出到哪里去
 	output: {
