@@ -14,7 +14,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 				共享一个hash值。css文件变化，js文件也会变化
 			3. contenthash 会根据文件内容来生成hash值（只有文件内容发生了变化，才会变化）
 				问题：改动某个js文件（contenthash会变化），依赖这个js文件也会发生变化
-
 			4. 提取所有文件的hash成单独文件
 				optimization: {
 					runtimeChunk: {
